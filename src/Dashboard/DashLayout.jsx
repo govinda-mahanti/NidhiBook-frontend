@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
-// I've added an icon library for a more professional look, like in the screenshot.
-// You can install it with: npm install lucide-react
-import { LayoutDashboard, Receipt, User, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, Receipt, User, Settings, LogOut } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const DashLayout = () => {
   const [showProfile, setShowProfile] = useState(false);
@@ -11,6 +10,8 @@ const DashLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const user = useSelector((state) => state.auth.user);
+  console.log(user);
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
@@ -26,8 +27,16 @@ const DashLayout = () => {
   }, []);
 
   const navItems = [
-    { label: "Dashboard", path: "/dashboard", icon: <LayoutDashboard size={20} /> },
-    { label: "Expense", path: "/dashboard/expense", icon: <Receipt size={20} /> },
+    {
+      label: "Dashboard",
+      path: "/dashboard",
+      icon: <LayoutDashboard size={20} />,
+    },
+    {
+      label: "Expense",
+      path: "/dashboard/expense",
+      icon: <Receipt size={20} />,
+    },
     { label: "Income", path: "/dashboard/income", icon: <Receipt size={20} /> },
     { label: "Profile", path: "/dashboard/profile", icon: <User size={20} /> },
   ];
@@ -63,10 +72,10 @@ const DashLayout = () => {
             ))}
           </ul>
         </div>
-        <footer className="text-xs text-center text-gray-500">
+        {/*  <footer className="text-xs text-center text-gray-500">
           <p>Made with ❤️</p>
           <p>&copy; Nidhibook</p>
-        </footer>
+        </footer> */}
       </aside>
 
       {/* Main Content */}
@@ -75,22 +84,60 @@ const DashLayout = () => {
         <header className="bg-[#161b22] border-b border-gray-700 px-6 py-4 flex justify-between items-center">
           <div className="text-sm text-gray-400">{currentTime}</div>
           <div className="flex items-center gap-6 relative">
-             <button onClick={() => setShowSettings(!showSettings)} className="text-gray-400 hover:text-white">
-                <Settings size={20} />
+            <button
+              onClick={() => setShowSettings(!showSettings)}
+              className="text-gray-400 hover:text-white"
+            >
+              <Settings size={20} />
             </button>
-            <button onClick={() => setShowProfile(!showProfile)} className="text-gray-400 hover:text-white">
-                <User size={20} />
+            <button
+              onClick={() => setShowProfile(!showProfile)}
+              className="text-gray-400 hover:text-white"
+            >
+              <User size={20} />
             </button>
 
             {/* Settings Dropdown */}
-            {showSettings && (
+            {/*   {showSettings && (
               <div className="absolute top-10 right-12 bg-[#161b22] border border-gray-700 shadow-lg rounded-md p-2 w-48 z-10">
                 <ul className="text-sm text-gray-300">
                   <li className="px-3 py-2 rounded cursor-pointer hover:bg-gray-700/50">
                     Reset Password
                   </li>
-                  <li className="px-3 py-2 rounded cursor-pointer hover:bg-gray-700/50">Terms</li>
-                  <li className="px-3 py-2 rounded cursor-pointer hover:bg-gray-700/50">Privacy</li>
+                  <li className="px-3 py-2 rounded cursor-pointer hover:bg-gray-700/50">
+                    Terms
+                  </li>
+                  <li className="px-3 py-2 rounded cursor-pointer hover:bg-gray-700/50">
+                    Privacy
+                  </li>
+                  <li
+                    onClick={handleLogout}
+                    className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer text-red-500 hover:bg-gray-700/50"
+                  >
+                    <LogOut size={16} /> Logout
+                  </li>
+                </ul>
+              </div>
+            )} */}
+            {/* Settings Dropdown */}
+            {showSettings && (
+              <div className="absolute top-10 right-12 bg-[#161b22] border border-gray-700 shadow-lg rounded-md p-2 w-48 z-10">
+                <ul className="text-sm text-gray-300">
+                  <li
+                    onClick={() => {
+                      setShowSettings(false);
+                      navigate("/dashboard/profile"); // or your reset password route
+                    }}
+                    className="px-3 py-2 rounded cursor-pointer hover:bg-gray-700/50"
+                  >
+                    Reset Password
+                  </li>
+                  <li className="px-3 py-2 rounded cursor-pointer hover:bg-gray-700/50">
+                    Terms
+                  </li>
+                  <li className="px-3 py-2 rounded cursor-pointer hover:bg-gray-700/50">
+                    Privacy
+                  </li>
                   <li
                     onClick={handleLogout}
                     className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer text-red-500 hover:bg-gray-700/50"
@@ -102,13 +149,12 @@ const DashLayout = () => {
             )}
 
             {/* Profile Dropdown */}
-            {showProfile && (
+            {showProfile && user && (
               <div className="absolute top-10 right-0 bg-[#161b22] border border-gray-700 shadow-lg rounded-md p-4 w-64 z-10 text-gray-300">
                 <h2 className="font-semibold mb-2 text-white">Your Profile</h2>
                 <div className="text-sm space-y-1">
-                  <p>Name: Dr. Govinda</p>
-                  <p>Email: govinda@example.com</p>
-                  <p>Role: Consultant</p>
+                  <p>{user.name}</p>
+                  <p>Email: {user.email}</p>
                 </div>
               </div>
             )}

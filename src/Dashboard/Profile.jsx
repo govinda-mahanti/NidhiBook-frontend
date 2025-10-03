@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logOut } from "../Redux/authSlice";
 import { BASE_URL } from "../config/urlconfig";
-
-// --- Helper Components for UI ---
-
-// Icon component for buttons and inputs
 const Icon = ({ path, className = "w-6 h-6" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +17,6 @@ const Icon = ({ path, className = "w-6 h-6" }) => (
   </svg>
 );
 
-// Input field component
 const InputField = ({
   label,
   type,
@@ -53,7 +50,6 @@ const InputField = ({
   </div>
 );
 
-// Button component
 const Button = ({
   onClick,
   children,
@@ -80,104 +76,120 @@ const Button = ({
 // --- Main Profile Component ---
 const Profile = () => {
   const token = useSelector((state) => state.auth.token);
-
-  // State to hold user data, initialized with mock data
-  const [user, setUser] = useState({
-    name: "John Doe",
-    email: "john.doe@example.com",
-    profession: "Software Engineer",
-    annualIncome: 95000,
-    monthlyBudget: 3000,
-    yearlyBudget: 36000,
-  });
-
-  // State to manage the form data during editing
+  const [user, setUser] = useState({});
   const [formData, setFormData] = useState({ ...user });
-  // State to toggle between view and edit modes
   const [isEditing, setIsEditing] = useState(false);
-  // State to manage password change fields
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
   });
+  const [profileMsg, setProfileMsg] = useState("");
+  const [passwordMsg, setPasswordMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // Effect to sync formData when user data changes
   useEffect(() => {
     setFormData({ ...user });
   }, [user]);
 
-  // Fetch user data from backend on mount
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const res = await axios.get(`${BASE_URL}/auth/getprofile`, {
-          headers: { Authorization: token },
-        });
+    if (!token) return;
+    setLoading(true);
+    axios
+      .get(`${BASE_URL}/auth/getprofile`, { headers: { Authorization: token } })
+      .then((res) => {
         setUser(res.data);
-      } catch (error) {
-        // Add error handling/notification
-      }
-    };
-    if (token) fetchProfile();
+        setFormData(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setProfileMsg("Error loading profile.");
+        setLoading(false);
+      });
   }, [token]);
 
-  // Handle input changes for the main profile form
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle input changes for the password reset form
   const handlePasswordChange = (e) => {
     const { name, value } = e.target;
     setPasswordData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle saving the profile changes
   const handleSave = async (e) => {
     e.preventDefault();
+    setProfileMsg("");
     try {
       const res = await axios.put(`${BASE_URL}/auth/updateprofile`, formData, {
         headers: { Authorization: token },
       });
-      setUser(res.data);
+      setUser(res.data.user ? res.data.user : res.data);
       setIsEditing(false);
-      // Add success notification
-    } catch (error) {
-      // Add error notification
+      setProfileMsg("Profile updated!");
+    } catch {
+      setProfileMsg("Error updating profile.");
     }
   };
 
-  // Handle canceling the edit
   const handleCancel = () => {
     setFormData({ ...user });
     setIsEditing(false);
+    setProfileMsg("");
   };
 
-  // Handle the password reset logic
+  /*  const handlePasswordReset = async (e) => {
+    e.preventDefault();
+    setPasswordMsg("");
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      setPasswordMsg("New passwords do not match!");
+      return;
+    }
+    try {
+      const res = await axios.put(
+        `${BASE_URL}/auth/updatepassword`,
+        passwordData,
+        { headers: { Authorization: token } }
+      );
+      setPasswordMsg("Password updated!");
+      setPasswordData({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+    } catch (err) {
+      setPasswordMsg(err.response?.data?.message || "Error updating password.");
+    }
+  };
+ */
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     if (passwordData.newPassword !== passwordData.confirmPassword) {
-      alert("New passwords do not match!"); // Use a better notification system in production
+      alert("New passwords do not match!");
       return;
     }
     try {
       await axios.put(`${BASE_URL}/auth/updatepassword`, passwordData, {
         headers: { Authorization: token },
       });
-      setPasswordData({
-        currentPassword: "",
-        newPassword: "",
-        confirmPassword: "",
-      });
-      // Add success notification
+      // After password change success:
+      dispatch(logOut()); // Clear tokens and user info
+      alert("Password updated successfully. Please log in again.");
+      navigate("/login"); // Redirect to login page
     } catch (error) {
-      // Add error notification
+      alert(error.response?.data?.message || "Error updating password.");
     }
   };
-
-  // --- Render Logic ---
+  if (loading)
+    return (
+      <div className="bg-black min-h-screen flex items-center justify-center font-sans text-white">
+        Loading profile...
+      </div>
+    );
 
   return (
     <div className="bg-black min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans">
@@ -217,7 +229,6 @@ const Profile = () => {
 
         {isEditing ? (
           <>
-            {/* --- Edit Profile Form --- */}
             <form
               onSubmit={handleSave}
               className="p-6 sm:p-8 border-t border-gray-800"
@@ -225,6 +236,9 @@ const Profile = () => {
               <h2 className="text-2xl font-semibold text-white mb-6">
                 Edit Your Details
               </h2>
+              {profileMsg && (
+                <div className="mb-4 text-blue-400">{profileMsg}</div>
+              )}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <InputField
                   label="Full Name"
@@ -293,11 +307,13 @@ const Profile = () => {
               </div>
             </form>
 
-            {/* --- Password Reset Section --- */}
             <div className="p-6 sm:p-8 border-t border-gray-800">
               <h2 className="text-2xl font-semibold text-white mb-6">
                 Reset Password
               </h2>
+              {passwordMsg && (
+                <div className="mb-4 text-blue-400">{passwordMsg}</div>
+              )}
               <form onSubmit={handlePasswordReset}>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <InputField
@@ -341,7 +357,6 @@ const Profile = () => {
             </div>
           </>
         ) : (
-          // --- View Profile Details ---
           <div className="p-6 sm:p-8 border-t border-gray-800">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-white">
               <div className="flex flex-col">

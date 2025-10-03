@@ -11,7 +11,7 @@ const DashLayout = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.auth.user);
-  console.log(user);
+  //console.log(user);
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();

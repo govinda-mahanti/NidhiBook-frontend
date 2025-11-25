@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { MessageCircle, X, Send } from 'lucide-react'
 import axios from 'axios'
+import { BASE_URL } from '../config/urlconfig'
 
 const AIBot = () => {
   const [isChatOpen, setIsChatOpen] = useState(false)
@@ -31,7 +32,7 @@ const AIBot = () => {
     setIsLoading(true)
 
     try {
-      const response = await axios.post('http://localhost:5000/api/chat', {
+      const response = await axios.post(`${BASE_URL}/api/chat`, {
         message: userMessage
       })
       

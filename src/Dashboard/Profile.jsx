@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logOut } from "../Redux/authSlice";
+import { logOut } from "../redux/authSlice";
 import { BASE_URL } from "../config/urlconfig";
 const Icon = ({ path, className = "w-6 h-6" }) => (
   <svg

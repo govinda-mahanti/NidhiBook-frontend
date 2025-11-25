@@ -1,6 +1,8 @@
-import React from 'react';
-import d from '../assets/d.png'
-import govin from '../assets/govin.jpg'
+import React from "react";
+import d from "../assets/d.png";
+import govin from "../assets/govin.jpg";
+import { UserRound } from "lucide-react";
+
 const About = () => {
   return (
     <section className="min-h-screen bg-black relative overflow-hidden py-20">
@@ -23,7 +25,6 @@ const About = () => {
 
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Left Content - Our Story */}
           <div className="space-y-6">
             <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-slate-700">
               <div className="flex items-center gap-4 mb-6">
@@ -78,10 +79,10 @@ const About = () => {
                 <h3 className="text-2xl font-bold text-white">Our Vision</h3>
               </div>
               <p className="text-gray-400 leading-relaxed">
-                To become the world's most trusted financial management platform,
-                helping millions of users build wealth, achieve their goals, and
-                secure their financial independence through intelligent automation
-                and personalized guidance.
+                To become the world's most trusted financial management
+                platform, helping millions of users build wealth, achieve their
+                goals, and secure their financial independence through
+                intelligent automation and personalized guidance.
               </p>
             </div>
           </div>
@@ -94,7 +95,7 @@ const About = () => {
                 alt="NidhiBook Dashboard"
                 className="rounded-2xl shadow-2xl w-full h-auto"
               />
-              
+
               {/* Floating Accent Elements */}
               <div className="absolute -top-6 -right-6 w-24 h-24 bg-purple-500/20 rounded-full blur-2xl"></div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl"></div>
@@ -106,7 +107,7 @@ const About = () => {
         <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-12 border border-slate-700 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-600/10 rounded-full blur-3xl"></div>
-          
+
           <div className="relative text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Developed By
@@ -135,14 +136,14 @@ const About = () => {
               </p>
               <p className="text-gray-400 max-w-lg">
                 Passionate about creating innovative financial solutions that
-                empower people to achieve their dreams. Building NidhiBook to make
-                financial management accessible to everyone.
+                empower people to achieve their dreams. Building NidhiBook to
+                make financial management accessible to everyone.
               </p>
 
               {/* Social Links */}
               <div className="flex items-center justify-center md:justify-start gap-4 pt-4">
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/govinda-mahanti-314754251"
                   className="w-12 h-12 bg-slate-700 hover:bg-purple-600 rounded-lg flex items-center justify-center transition-colors duration-300"
                 >
                   <svg
@@ -154,7 +155,7 @@ const About = () => {
                   </svg>
                 </a>
                 <a
-                  href="#"
+                  href="https://github.com/govinda-mahanti"
                   className="w-12 h-12 bg-slate-700 hover:bg-cyan-600 rounded-lg flex items-center justify-center transition-colors duration-300"
                 >
                   <svg
@@ -165,17 +166,15 @@ const About = () => {
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                   </svg>
                 </a>
+                {/* Website Button */}
                 <a
-                  href="#"
-                  className="w-12 h-12 bg-slate-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors duration-300"
+                  href="https://govindamahanti.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-slate-700 hover:bg-gradient-to-r hover:from-blue-400 hover:to-cyan-400 
+             rounded-lg flex items-center justify-center transition-all duration-300 group"
                 >
-                  <svg
-                    className="w-6 h-6 text-white"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                  </svg>
+                  <UserRound className="w-6 h-6 text-gray-300 group-hover:text-white transition-all duration-300" />
                 </a>
               </div>
             </div>

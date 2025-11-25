@@ -216,11 +216,11 @@ const Expense = () => {
 
   return (
     <div className="bg-black text-white min-h-screen p-4 sm:p-6 lg:p-8">
-      <div className="max-w-5xl mx-auto">
+       <div className="md:max-w-5xl max-w-sm mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold tracking-tight">
-            Expense Dashboard
+            Expenses
           </h1>
           <button
             onClick={() => {
@@ -245,7 +245,7 @@ const Expense = () => {
         )}
 
         {/* Expense Table */}
-        <div className="bg-gray-900 rounded-lg shadow-xl overflow-hidden">
+        <div className="bg-gray-900 rounded-lg shadow-xl overflow-auto">
           <table className="w-full text-left">
             <thead className="bg-gray-800">
               <tr>

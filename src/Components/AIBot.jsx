@@ -36,9 +36,11 @@ const AIBot = () => {
       })
       
       setMessages([...newMessages, { 
-        text: response.data.response || response.data.message || "I received your message!", 
+        text: response.data.botReply || response.data.message || "I received your message!", 
         sender: "bot" 
       }])
+
+ 
     } catch (error) {
       console.error('Error:', error)
       setMessages([...newMessages, { 

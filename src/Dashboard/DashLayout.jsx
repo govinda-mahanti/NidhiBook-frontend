@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 import {
   Home,
@@ -10,7 +11,8 @@ import {
   Menu,
   Settings,
   User,
-  LogOut
+  LogOut,
+  Bot
 } from "lucide-react";
 
 import { useSelector } from "react-redux";
@@ -44,7 +46,7 @@ const DashLayout = () => {
     { label: "Expense", path: "/dashboard/expense", icon: <Wallet size={20} /> },
     { label: "Income", path: "/dashboard/income", icon: <ArrowUpCircle size={20} /> },
     { label: "Profile", path: "/dashboard/profile", icon: <UserCircle size={20} /> },
-    { label: "Advisor", path: "/dashboard/advisor", icon: <Users size={20} /> },
+    { label: "Advisor", path: "/dashboard/advisor", icon: <Bot size={20} /> },
   ];
 
   const handleLogout = () => {
@@ -58,8 +60,10 @@ const DashLayout = () => {
       {/* Desktop Sidebar */}
       <aside className="w-64 bg-[#161b22] text-gray-300 flex-col justify-between p-4 hidden md:flex">
         <div>
-          <h1 className="text-2xl font-bold text-center text-white mb-12">
-            Nidhibook
+          <h1 className="text-2xl font-bold text-center text-white mb-12 ml-6">
+            <a href="/" className="text-2xl font-bold text-white flex items-center">
+                      <img src={logo} alt="NidhiBook" className="h-12" />
+                    </a>
           </h1>
 
           <ul className="space-y-2">

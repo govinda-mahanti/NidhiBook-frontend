@@ -204,10 +204,10 @@ const Income = () => {
 
    return (
      <div className="bg-black text-white h-full p-4 sm:p-6 lg:p-8 font-sans">
-       <div className="max-w-5xl mx-auto">
+       <div className="md:max-w-5xl max-w-sm mx-auto">
          {/* Header */}
          <div className="flex justify-between items-center mb-8">
-           <h1 className="text-3xl font-bold tracking-tight">Income Dashboard</h1>
+           <h1 className="text-3xl font-bold tracking-tight">Incomes</h1>
            <button
              onClick={() => {
                setNewIncome({ source: '', amount: '', date: new Date().toISOString().split('T')[0] });

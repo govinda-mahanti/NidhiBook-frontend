@@ -339,19 +339,19 @@ const Profile = () => {
               <div className="flex flex-col">
                 <span className="text-sm text-gray-400">Annual Income</span>
                 <span className="text-lg font-semibold">
-                  ${new Intl.NumberFormat().format(user.annualIncome)}
+                  ₹{new Intl.NumberFormat().format(user.annualIncome)}
                 </span>
               </div>
               <div className="flex flex-col">
                 <span className="text-sm text-gray-400">Monthly Budget</span>
                 <span className="text-lg font-semibold">
-                  ${new Intl.NumberFormat().format(user.monthlyBudget)}
+                  ₹{new Intl.NumberFormat().format(user.monthlyBudget)}
                 </span>
               </div>
               <div className="flex flex-col">
                 <span className="text-sm text-gray-400">Yearly Budget</span>
                 <span className="text-lg font-semibold">
-                  ${new Intl.NumberFormat().format(user.yearlyBudget)}
+                  ₹{new Intl.NumberFormat().format(user.yearlyBudget)}
                 </span>
               </div>
             </div>

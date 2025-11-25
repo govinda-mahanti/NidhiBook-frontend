@@ -1,11 +1,11 @@
 import React from 'react'
-
+import logo from "../assets/logo.png"
 const Footer = () => (
     <footer className="bg-slate-900 text-slate-400">
         <div className="container mx-auto px-6 py-12">
             <div className="grid md:grid-cols-4 gap-8">
                 <div>
-                    <h3 className="text-xl font-bold text-white mb-4">NidhiBook</h3>
+                    <img src={logo} alt="NidhiBook" className="h-13 mb-1" />
                     <p className="text-sm">The smartest way to manage your personal finances.</p>
                 </div>
                 <div>

@@ -139,30 +139,7 @@ const Profile = () => {
     setProfileMsg("");
   };
 
-  /*  const handlePasswordReset = async (e) => {
-    e.preventDefault();
-    setPasswordMsg("");
-    if (passwordData.newPassword !== passwordData.confirmPassword) {
-      setPasswordMsg("New passwords do not match!");
-      return;
-    }
-    try {
-      const res = await axios.put(
-        `${BASE_URL}/auth/updatepassword`,
-        passwordData,
-        { headers: { Authorization: token } }
-      );
-      setPasswordMsg("Password updated!");
-      setPasswordData({
-        currentPassword: "",
-        newPassword: "",
-        confirmPassword: "",
-      });
-    } catch (err) {
-      setPasswordMsg(err.response?.data?.message || "Error updating password.");
-    }
-  };
- */
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -192,8 +169,8 @@ const Profile = () => {
     );
 
   return (
-    <div className="bg-black min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans">
-      <div className="w-full max-w-4xl mx-auto bg-[#0d1117] rounded-2xl shadow-2xl shadow-blue-900/20 overflow-hidden">
+    <div className="bg-black h-full flex p-4 sm:p-6 lg:p-8 font-sans">
+      <div className="w-full max-w-4xl mx-auto rounded-2xl overflow-hidden">
         <div className="p-6 sm:p-8">
           <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
             <img

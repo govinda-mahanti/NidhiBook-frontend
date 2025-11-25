@@ -1,269 +1,705 @@
 import React from "react";
+import { ArrowRight } from "lucide-react";
 
-// Using lucide-react for modern, clean icons.
-// You might need to install it: npm install lucide-react
-import {
-  DollarSign,
-  BarChart2,
-  Zap,
-  BrainCircuit,
-  ShieldCheck,
-  MoveRight,
-  Star,
-} from "lucide-react";
-
-// --- Reusable Components ---
-
-const FeatureCard = ({ icon, title, children }) => (
-  <div className="bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-blue-500/20 transition-shadow duration-300 transform hover:-translate-y-1 border border-slate-700">
-    <div className="flex items-center justify-center h-12 w-12 rounded-full bg-blue-900/50 text-blue-400 mb-4">
-      {icon}
-    </div>
-    <h3 className="text-xl font-bold text-slate-100 mb-2">{title}</h3>
-    <p className="text-slate-400 leading-relaxed">{children}</p>
-  </div>
-);
-
-const TestimonialCard = ({ name, role, avatar, children }) => (
-  <div className="bg-slate-800 p-8 rounded-xl shadow-lg border border-slate-700 text-center">
-    <img
-      src={avatar}
-      alt={name}
-      className="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-blue-500"
-    />
-    <p className="text-slate-400 italic mb-4">"{children}"</p>
-    <div className="flex justify-center items-center text-yellow-500 mb-2">
-      {[...Array(5)].map((_, i) => (
-        <Star key={i} className="w-5 h-5 fill-current" />
-      ))}
-    </div>
-    <h4 className="font-bold text-slate-100">{name}</h4>
-    <p className="text-sm text-slate-500">{role}</p>
-  </div>
-);
-
-// --- Main Page Sections ---
-
-const HeroSection = () => (
-  <section className="pt-32 pb-20 bg-slate-900 text-center">
-    <div className="container mx-auto px-6">
-      <h1 className="text-4xl md:text-6xl font-extrabold text-slate-100 leading-tight mb-4">
-        Master Your Money with <span className="text-blue-500">AI-Powered</span>{" "}
-        Insights
-      </h1>
-      <p className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-8">
-        NidhiBook is the smartest way to track your expenses, manage your
-        income, and make intelligent financial decisions. Stop guessing, start
-        growing.
-      </p>
-      <div className="flex justify-center items-center space-x-4">
-        <a
-          href="/signup"
-          className="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
-        >
-          Get Started for Free
-        </a>
-        <a
-          href="#features"
-          className="flex items-center text-slate-300 font-semibold group"
-        >
-          Learn More{" "}
-          <MoveRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-        </a>
-      </div>
-      <div className="mt-16">
-        <img
-          src="https://placehold.co/1000x500/1E293B/A3BFFA?text=NidhiBook+Dashboard+UI"
-          alt="NidhiBook Dashboard"
-          className="rounded-xl shadow-2xl mx-auto border-4 border-slate-700"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src =
-              "https://placehold.co/1000x500/1E293B/A3BFFA?text=App+Preview";
-          }}
-        />
-      </div>
-    </div>
-  </section>
-);
-
-const FeaturesSection = () => (
-  <section id="features" className="py-20 bg-black">
-    <div className="container mx-auto px-6">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-white">
-          Everything You Need for Financial Clarity
-        </h2>
-        <p className="text-slate-400 mt-2 max-w-2xl mx-auto">
-          Track, analyze, and optimize your finances with our powerful suite of
-          tools.
-        </p>
-      </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <FeatureCard icon={<DollarSign />} title="Effortless Tracking">
-          Quickly log your daily income and expenses on the go. Categorize
-          transactions to see where your money truly goes.
-        </FeatureCard>
-        <FeatureCard icon={<BarChart2 />} title="Visual Reports">
-          Understand your financial health at a glance with beautiful,
-          easy-to-read charts and graphs.
-        </FeatureCard>
-        <FeatureCard icon={<Zap />} title="Smart Budgeting">
-          Create custom budgets that work for you. We'll notify you when you're
-          approaching your limits to keep you on track.
-        </FeatureCard>
-        <FeatureCard icon={<BrainCircuit />} title="AI-Powered Advice">
-          Our AI analyzes your spending habits to provide personalized tips and
-          uncover potential savings you might have missed.
-        </FeatureCard>
-        <FeatureCard icon={<ShieldCheck />} title="Bank-Level Security">
-          Your financial data is encrypted and secure. We prioritize your
-          privacy and safety above all else.
-        </FeatureCard>
-        <FeatureCard icon={<MoveRight />} title="Goal Setting">
-          Define your financial goals, from saving for a vacation to a down
-          payment, and track your progress effortlessly.
-        </FeatureCard>
-      </div>
-    </div>
-  </section>
-);
-
-const AiPowerSection = () => (
-  <section id="ai-power" className="py-20 bg-slate-900">
-    <div className="container mx-auto px-6">
-      <div className="flex flex-col lg:flex-row items-center gap-12">
-        <div className="lg:w-1/2">
-          <img
-            src="https://placehold.co/600x500/3B82F6/FFFFFF?text=AI+Decision+Engine"
-            alt="AI helping with financial decisions"
-            className="rounded-xl shadow-2xl"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src =
-                "https://placehold.co/600x500/3B82F6/FFFFFF?text=AI+Feature";
-            }}
-          />
-        </div>
-        <div className="lg:w-1/2">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4">
-            Let Our AI Be Your Financial Co-Pilot
-          </h2>
-          <p className="text-slate-400 mb-6 leading-relaxed">
-            NidhiBook's intelligent core does more than just count your money.
-            It acts as your personal financial analyst, working 24/7 to help you
-            make smarter decisions.
-          </p>
-          <ul className="space-y-4">
-            <li className="flex items-start">
-              <Zap className="w-6 h-6 text-blue-500 mr-3 flex-shrink-0 mt-1" />
-              <span>
-                <strong className="text-slate-200">Identify Trends:</strong>{" "}
-                Automatically detects your spending patterns and highlights
-                areas for improvement.
-              </span>
-            </li>
-            <li className="flex items-start">
-              <Zap className="w-6 h-6 text-blue-500 mr-3 flex-shrink-0 mt-1" />
-              <span>
-                <strong className="text-slate-200">Forecast Future:</strong>{" "}
-                Predicts upcoming bills and potential cash flow issues so you
-                can plan ahead.
-              </span>
-            </li>
-            <li className="flex items-start">
-              <Zap className="w-6 h-6 text-blue-500 mr-3 flex-shrink-0 mt-1" />
-              <span>
-                <strong className="text-slate-200">Personalized Nudges:</strong>{" "}
-                Get timely, actionable advice tailored to your unique financial
-                situation to help you save more.
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const TestimonialsSection = () => (
-  <section id="testimonials" className="py-20 bg-black">
-    <div className="container mx-auto px-6">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-white">
-          Loved by Users Worldwide
-        </h2>
-        <p className="text-slate-400 mt-2 max-w-2xl mx-auto">
-          Don't just take our word for it. Here's what our users are saying.
-        </p>
-      </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <TestimonialCard
-          name="Priya Sharma"
-          role="Software Developer"
-          avatar="https://placehold.co/100x100/E0E7FF/4338CA?text=PS"
-        >
-          NidhiBook has completely changed how I manage my finances. The AI
-          insights are a game-changer! I've saved more in the last 3 months than
-          I did in the entire previous year.
-        </TestimonialCard>
-        <TestimonialCard
-          name="Rahul Verma"
-          role="Freelance Designer"
-          avatar="https://placehold.co/100x100/DBEAFE/1E40AF?text=RV"
-        >
-          As a freelancer, my income fluctuates. This app helps me stay on top
-          of everything. The budgeting tools are simple, powerful, and keep me
-          from overspending.
-        </TestimonialCard>
-        <TestimonialCard
-          name="Anjali Mehta"
-          role="Marketing Manager"
-          avatar="https://placehold.co/100x100/C7D2FE/4F46E5?text=AM"
-        >
-          I finally feel in control of my money. The visual reports make it so
-          easy to see where my money is going. Highly recommend to anyone
-          looking to improve their financial literacy.
-        </TestimonialCard>
-      </div>
-    </div>
-  </section>
-);
-
-const CtaSection = () => (
-  <section className="bg-blue-600 text-white">
-    <div className="container mx-auto px-6 py-20 text-center">
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">
-        Ready to Transform Your Financial Future?
-      </h2>
-      <p className="text-blue-200 max-w-2xl mx-auto mb-8">
-        Join thousands of users who are building a better financial life with
-        NidhiBook. It's free to get started!
-      </p>
-      <a
-        href="#"
-        className="bg-white text-blue-600 px-10 py-4 rounded-full text-lg font-bold hover:bg-blue-100 transition-all duration-300 shadow-2xl transform hover:scale-105"
-      >
-        Sign Up Now - It's Free!
-      </a>
-    </div>
-  </section>
-);
-
-// --- The Main Home Page Component ---
-
-const Home = () => {
+const HeroSection = () => {
   return (
-    <div className="bg-slate-900 font-sans text-slate-300">
-      <main>
-        <HeroSection />
-        <FeaturesSection />
-        <AiPowerSection />
-        <TestimonialsSection />
-        <CtaSection />
-      </main>
-    </div>
+    <>
+      <section className="min-h-screen bg-black relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent" />
+
+        <div className="relative container mx-auto px-6 pt-32 pb-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-8">
+              <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
+                Manage Your Expenses Easily With{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+                  NidhiBook
+                </span>
+              </h1>
+
+              <p className="text-lg text-gray-400 max-w-xl leading-relaxed">
+                Track your daily income and expenses effortlessly. Upload your
+                annual budget, view statistical graphs, and get personalized
+                financial guidance to build better money habits.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <button className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105">
+                  Get Started Free
+                </button>
+              </div>
+            </div>
+
+            {/* Right Dashboard Preview */}
+            <div className="relative">
+              <div className="relative space-y-2">
+                {/* Total Balance Card */}
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-300 border border-slate-700">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center">
+                      <svg
+                        className="w-6 h-6 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                        />
+                      </svg>
+                    </div>
+                    <div className="text-sm text-gray-400">Total Balance</div>
+                  </div>
+                  <div className="text-3xl font-bold text-white mb-15">
+                    ₹91,100
+                  </div>
+                </div>
+
+                {/* Financial Overview with Pie Chart */}
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 shadow-2xl transform -rotate-1 hover:rotate-0 transition-transform duration-300 absolute top-20 right-0 w-96 z-10 border border-slate-700">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="font-semibold text-white text-lg">
+                      Financial Overview
+                    </h3>
+                  </div>
+
+                  {/* Pie Chart */}
+                  <div className="relative flex items-center justify-center my-8">
+                    <svg className="w-56 h-56 transform -rotate-90">
+                      <circle
+                        cx="112"
+                        cy="112"
+                        r="80"
+                        fill="none"
+                        stroke="#A78BFA"
+                        strokeWidth="40"
+                        strokeDasharray="302 503"
+                      />
+                      <circle
+                        cx="112"
+                        cy="112"
+                        r="80"
+                        fill="none"
+                        stroke="#FB923C"
+                        strokeWidth="40"
+                        strokeDasharray="201 503"
+                        strokeDashoffset="-302"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="text-xs text-gray-400 mb-1">
+                          Total Balance
+                        </div>
+                        <div className="text-2xl font-bold text-white">
+                          ₹91,100
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Legend */}
+                  <div className="flex items-center justify-center gap-6 text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 bg-purple-400 rounded-full"></span>
+                      <span className="text-gray-300">Balance</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 bg-orange-400 rounded-full"></span>
+                      <span className="text-gray-300">Income</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* AI Suggestions Card */}
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 shadow-2xl text-white mt-48 border border-slate-700">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center">
+                      <svg
+                        className="w-6 h-6 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg">AI Suggestions</h3>
+                      <span className="text-xs bg-red-500/20 text-red-400 px-2 py-0.5 rounded">
+                        high
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-300">
+                    Reduce Dining Out - You spent ₹80 on dining out. Try cooking
+                    at home to save ~₹200/month.
+                  </p>
+                </div>
+
+                {/* Last 30 Days Expenses Bar Chart */}
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 shadow-2xl absolute bottom-32 left-0 w-80 transform -rotate-2 hover:rotate-0 transition-transform duration-300 border border-slate-700">
+                  <div className="text-white font-semibold mb-6">
+                    Last 30 Days Expenses
+                  </div>
+                  <div className="flex items-end justify-between h-40 gap-2 px-2">
+                    <div
+                      className="bg-purple-500 rounded-t-lg w-10 transition-all hover:bg-purple-400 cursor-pointer"
+                      style={{ height: "96px" }}
+                    />
+                    <div
+                      className="bg-purple-500 rounded-t-lg w-10 transition-all hover:bg-purple-400 cursor-pointer"
+                      style={{ height: "120px" }}
+                    />
+                    <div
+                      className="bg-purple-500 rounded-t-lg w-10 transition-all hover:bg-purple-400 cursor-pointer"
+                      style={{ height: "72px" }}
+                    />
+                    <div
+                      className="bg-purple-500 rounded-t-lg w-10 transition-all hover:bg-purple-400 cursor-pointer"
+                      style={{ height: "144px" }}
+                    />
+                    <div
+                      className="bg-purple-500 rounded-t-lg w-10 transition-all hover:bg-purple-400 cursor-pointer"
+                      style={{ height: "112px" }}
+                    />
+                    <div
+                      className="bg-purple-500 rounded-t-lg w-10 transition-all hover:bg-purple-400 cursor-pointer"
+                      style={{ height: "88px" }}
+                    />
+                  </div>
+                  <div className="flex justify-between mt-4 px-2 text-xs text-gray-400">
+                    <span>₹1200</span>
+                    <span>₹1500</span>
+                    <span>₹900</span>
+                    <span>₹1100</span>
+                  </div>
+                </div>
+
+                {/* Income Card */}
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 shadow-2xl absolute bottom-0 right-0 w-72 border border-slate-700">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-white font-semibold">Income</h3>
+                    <button className="text-blue-400 text-sm hover:text-blue-300">
+                      See All →
+                    </button>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center">
+                          <svg
+                            className="w-5 h-5 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <div className="text-white font-medium text-sm">
+                            Salary
+                          </div>
+                          <div className="text-gray-500 text-xs">
+                            1st Feb 2025
+                          </div>
+                        </div>
+                      </div>
+                      <span className="text-emerald-400 font-semibold">
+                        + ₹12,000 ↑
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="min-h-screen bg-black relative overflow-hidden py-20">
+        <div className="absolute inset-0" />
+
+        <div className="relative container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Content */}
+            <div className="space-y-8">
+              <div className="inline-block">
+                <span className="text-sm font-semibold text-cyan-400 tracking-wider uppercase">
+                  Smart Financial Tools
+                </span>
+              </div>
+
+              <h2 className="text-5xl md:text-6xl font-bold text-white leading-tight">
+                We Offer{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+                  Interactive Dashboard
+                </span>
+              </h2>
+
+              <p className="text-xl text-gray-400 leading-relaxed">
+                Visualize your financial journey with stunning real-time charts
+                and graphs. Get instant insights into your spending patterns and
+                make smarter money decisions.
+              </p>
+
+              <div className="space-y-6 pt-6">
+                {/* Feature 1 */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      Real-Time Analytics
+                    </h3>
+                    <p className="text-gray-400">
+                      Track your expenses and income with live updates and
+                      beautiful visualizations
+                    </p>
+                  </div>
+                </div>
+
+                {/* Feature 2 */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-600 to-cyan-800 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      Smart Budgeting
+                    </h3>
+                    <p className="text-gray-400">
+                      Set goals, monitor progress, and stay on track with
+                      intelligent budget recommendations
+                    </p>
+                  </div>
+                </div>
+
+                {/* Feature 3 */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-pink-600 to-pink-800 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      AI-Powered Insights
+                    </h3>
+                    <p className="text-gray-400">
+                      Get personalized recommendations to optimize your spending
+                      and savings
+                    </p>
+                  </div>
+                </div>
+
+                {/* Feature 4 */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-green-800 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      AI-Powered Financial Advisor
+                    </h3>
+                    <p className="text-gray-400">
+                      Access financial advice whenever you need it, day or night
+                      (Finance Guru)
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <button className=" bg-gradient-to-r from-blue-400 to-cyan-400 px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105">
+                  Explore Dashboard
+                </button>
+              </div>
+            </div>
+
+            {/* Right Image - Dashboard Preview */}
+            <div className="relative">
+              <div className="relative bg-gradient-to-br from-purple-900/20 to-cyan-900/20 rounded-3xl p-8 backdrop-blur-sm border border-purple-500/30">
+                {/* Dashboard Image Placeholder */}
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
+                  {/* Header */}
+                  <div className="bg-slate-800/50 p-6 border-b border-slate-700">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-white font-semibold text-lg">
+                        Dashboard Overview
+                      </h3>
+                      <div className="flex gap-2">
+                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dashboard Content */}
+                  <div className="p-6 space-y-6">
+                    {/* Stats Cards */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-gradient-to-br from-purple-600/20 to-purple-800/20 rounded-xl p-4 border border-purple-500/30">
+                        <div className="text-purple-400 text-sm mb-1">
+                          Total Income
+                        </div>
+                        <div className="text-white text-2xl font-bold">
+                          ₹45,200
+                        </div>
+                        <div className="text-green-400 text-xs mt-1">
+                          ↑ 12.5%
+                        </div>
+                      </div>
+                      <div className="bg-gradient-to-br from-cyan-600/20 to-cyan-800/20 rounded-xl p-4 border border-cyan-500/30">
+                        <div className="text-cyan-400 text-sm mb-1">
+                          Total Expenses
+                        </div>
+                        <div className="text-white text-2xl font-bold">
+                          ₹32,890
+                        </div>
+                        <div className="text-red-400 text-xs mt-1">↑ 8.2%</div>
+                      </div>
+                    </div>
+
+                    {/* Chart Area */}
+                    <div className="bg-slate-800/50 rounded-xl p-4">
+                      <div className="flex items-end justify-between h-32 gap-2">
+                        <div
+                          className="bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg w-full transition-all hover:from-purple-500 hover:to-purple-300"
+                          style={{ height: "60%" }}
+                        />
+                        <div
+                          className="bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg w-full transition-all hover:from-purple-500 hover:to-purple-300"
+                          style={{ height: "80%" }}
+                        />
+                        <div
+                          className="bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg w-full transition-all hover:from-purple-500 hover:to-purple-300"
+                          style={{ height: "45%" }}
+                        />
+                        <div
+                          className="bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg w-full transition-all hover:from-purple-500 hover:to-purple-300"
+                          style={{ height: "90%" }}
+                        />
+                        <div
+                          className="bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg w-full transition-all hover:from-purple-500 hover:to-purple-300"
+                          style={{ height: "70%" }}
+                        />
+                        <div
+                          className="bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg w-full transition-all hover:from-purple-500 hover:to-purple-300"
+                          style={{ height: "55%" }}
+                        />
+                      </div>
+                      <div className="flex justify-between mt-3 text-xs text-gray-500">
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                      </div>
+                    </div>
+
+                    {/* Recent Transactions */}
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between bg-slate-800/50 rounded-lg p-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center">
+                            <span className="text-white text-lg">🍔</span>
+                          </div>
+                          <div>
+                            <div className="text-white text-sm font-medium">
+                              Food & Dining
+                            </div>
+                            <div className="text-gray-500 text-xs">Today</div>
+                          </div>
+                        </div>
+                        <span className="text-red-400 font-semibold">
+                          -₹580
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between bg-slate-800/50 rounded-lg p-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
+                            <span className="text-white text-lg">💼</span>
+                          </div>
+                          <div>
+                            <div className="text-white text-sm font-medium">
+                              Salary
+                            </div>
+                            <div className="text-gray-500 text-xs">
+                              Yesterday
+                            </div>
+                          </div>
+                        </div>
+                        <span className="text-green-400 font-semibold">
+                          +₹12,000
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Accent Elements */}
+                <div className="absolute -top-6 -right-6 w-24 h-24 bg-purple-500/20 rounded-full blur-2xl"></div>
+                <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl"></div>
+      </section>
+      <section className="min-h-screen bg-black relative overflow-hidden py-20">
+        <div className="absolute inset-0" />
+
+        <div className="relative container mx-auto px-6 max-w-4xl">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <div className="inline-block mb-4">
+              <span className="text-sm font-semibold text-cyan-400 tracking-wider uppercase">
+                Got Questions?
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              Frequently Asked{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+                Questions
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400">
+              Everything you need to know about NidhiBook
+            </p>
+          </div>
+
+          {/* FAQ Items */}
+          <div className="space-y-4">
+            {/* FAQ 1 */}
+            <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 overflow-hidden hover:border-purple-500/50 transition-all duration-300">
+              <details className="group">
+                <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+                  <h3 className="text-lg font-semibold text-white pr-8">
+                    What is NidhiBook and how does it work?
+                  </h3>
+                  <div className="flex-shrink-0 w-8 h-8 bg-purple-600/20 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform duration-300">
+                    <svg
+                      className="w-5 h-5 text-purple-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-400 leading-relaxed">
+                    NidhiBook is a comprehensive expense management platform
+                    that helps you track your daily income and expenses
+                    effortlessly. You can upload your annual budget, view
+                    statistical graphs, and receive personalized financial
+                    guidance from our AI-powered Finance Guru to build better
+                    money habits.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ 2 */}
+            <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 overflow-hidden hover:border-purple-500/50 transition-all duration-300">
+              <details className="group">
+                <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+                  <h3 className="text-lg font-semibold text-white pr-8">
+                    Is NidhiBook free to use?
+                  </h3>
+                  <div className="flex-shrink-0 w-8 h-8 bg-purple-600/20 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform duration-300">
+                    <svg
+                      className="w-5 h-5 text-purple-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-400 leading-relaxed">
+                    Yes! NidhiBook offers a free plan that includes essential
+                    features like expense tracking, basic analytics, and access
+                    to Finance Guru. We also offer premium plans with advanced
+                    features such as unlimited budget categories, detailed
+                    reports, and priority support.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ 3 */}
+            <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 overflow-hidden hover:border-purple-500/50 transition-all duration-300">
+              <details className="group">
+                <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+                  <h3 className="text-lg font-semibold text-white pr-8">
+                    How does Finance Guru provide personalized recommendations?
+                  </h3>
+                  <div className="flex-shrink-0 w-8 h-8 bg-purple-600/20 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform duration-300">
+                    <svg
+                      className="w-5 h-5 text-purple-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-400 leading-relaxed">
+                    Finance Guru analyzes your spending patterns, income
+                    sources, and financial goals using advanced AI algorithms.
+                    It identifies areas where you can save money, suggests
+                    budget optimizations, and provides actionable insights
+                    tailored specifically to your financial situation—available
+                    24/7 to answer your questions.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+            {/* FAQ 4 */}
+            <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 overflow-hidden hover:border-purple-500/50 transition-all duration-300">
+              <details className="group">
+                <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+                  <h3 className="text-lg font-semibold text-white pr-8">
+                    Is my financial data secure?
+                  </h3>
+                  <div className="flex-shrink-0 w-8 h-8 bg-purple-600/20 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform duration-300">
+                    <svg
+                      className="w-5 h-5 text-purple-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-gray-400 leading-relaxed">
+                    Absolutely! We take security seriously. All your data is
+                    encrypted using bank-level security protocols (AES-256
+                    encryption). We never share your personal information with
+                    third parties, and you have complete control over your data.
+                    We're also compliant with industry standards and
+                    regulations.
+                  </p>
+                </div>
+              </details>
+            </div>
+
+        
+
+          </div>
+
+          {/* CTA */}
+          <div className="mt-16 text-center">
+            <p className="text-gray-400 mb-6">Still have questions?</p>
+            <button className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105">
+              Contact Support
+            </button>
+          </div>
+        </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl"></div>
+      </section>
+    </>
   );
 };
 
-export default Home;
+export default HeroSection;

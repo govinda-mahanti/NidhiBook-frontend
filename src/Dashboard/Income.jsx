@@ -167,7 +167,6 @@ const Income = () => {
     }
   };
 
-  // Format date for display
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -175,9 +174,6 @@ const Income = () => {
       day: 'numeric'
     });
   };
-
-  // --- The rest of the JSX remains the same ---
-  // ... (loading state, error state, and component render logic) ...
 
   if (loading) {
      return (
@@ -207,8 +203,8 @@ const Income = () => {
    }
 
    return (
-     <div className="bg-black text-white min-h-screen p-4 sm:p-6 lg:p-8 font-sans">
-       <div className="max-w-4xl mx-auto">
+     <div className="bg-black text-white h-full p-4 sm:p-6 lg:p-8 font-sans">
+       <div className="max-w-5xl mx-auto">
          {/* Header */}
          <div className="flex justify-between items-center mb-8">
            <h1 className="text-3xl font-bold tracking-tight">Income Dashboard</h1>
@@ -246,7 +242,7 @@ const Income = () => {
                  {incomes.map((income) => (
                    <tr key={income._id} className="border-b border-gray-800 hover:bg-gray-800/50">
                      <td className="p-4">{income.source}</td>
-                     <td className="p-4 text-green-400 font-medium">${income.amount.toFixed(2)}</td>
+                     <td className="p-4 text-green-400 font-medium">₹{income.amount.toFixed(2)}</td>
                      <td className="p-4 text-gray-400">{formatDate(income.date)}</td>
                      <td className="p-4 flex justify-center items-center space-x-2">
                        <button 
@@ -275,7 +271,7 @@ const Income = () => {
 
        {/* Add Income Modal */}
        {isAddModalOpen && (
-         <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+         <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
            <div className="bg-gray-900 p-8 rounded-lg shadow-2xl w-full max-w-md">
              <h2 className="text-2xl font-bold mb-6">Add New Income</h2>
              <div className="space-y-4">
@@ -331,7 +327,7 @@ const Income = () => {
 
        {/* Edit Income Modal */}
        {isEditModalOpen && editingIncome && (
-          <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+          <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
            <div className="bg-gray-900 p-8 rounded-lg shadow-2xl w-full max-w-md">
              <h2 className="text-2xl font-bold mb-6">Edit Income</h2>
              <div className="space-y-4">

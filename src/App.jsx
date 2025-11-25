@@ -4,17 +4,22 @@ import Layout from "./Pages/Layout";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
+import Contact from "./Pages/Contact";
+import About from "./Pages/About";
 import DashLayout from "./Dashboard/DashLayout";
 import Dashboard from "./Dashboard/Dashboard";
 import Expense from "./Dashboard/Expense";
 import Profile from "./Dashboard/Profile";
 import Income from "./Dashboard/Income";
+import Advisor from "./Dashboard/Advisor";
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
         </Route>
@@ -24,6 +29,7 @@ function App() {
           <Route path="expense" element={<Expense />} />
           <Route path="profile" element={<Profile />} />
           <Route path="income" element={<Income />} />
+          <Route path="advisor" element={<Advisor />} />
         </Route>
       </Routes>
     </Router>

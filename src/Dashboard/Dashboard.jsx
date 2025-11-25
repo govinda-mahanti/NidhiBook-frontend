@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import {BASE_URL} from '../config/urlconfig'
 
 const Dashboard = () => {
   const token = useSelector((state) => state.auth.token);
@@ -66,7 +67,7 @@ const Dashboard = () => {
         const headers = {
           Authorization: token,
         };
-        const response = await axios.get("http://localhost:5000/api/expenses", {
+        const response = await axios.get(`${BASE_URL}/api/expenses`, {
           headers,
         });
         const expenseData = Array.isArray(response.data.expenses)
@@ -164,7 +165,7 @@ const Dashboard = () => {
         const headers = {
           Authorization: token,
         };
-        const response = await axios.get("http://localhost:5000/api/income", {
+        const response = await axios.get(`${BASE_URL}/api/income`, {
           headers,
         });
         const incomeData = Array.isArray(response.data.incomes)
@@ -218,7 +219,7 @@ const Dashboard = () => {
           Authorization: token,
         };
         const response = await axios.get(
-          "http://localhost:5000/api/suggestions",
+          `${BASE_URL}/api/suggestions`,
           {
             headers,
           }

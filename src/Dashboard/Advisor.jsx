@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { Send, Bot, User, Loader2 } from 'lucide-react';
-
+import { BASE_URL } from '../config/urlconfig';
 const Advisor = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
@@ -41,7 +41,7 @@ const Advisor = () => {
     try {
       // API call with token in header
       const response = await axios.post(
-        'http://localhost:5000/api/finance-chat',
+        `${BASE_URL}/api/finance-chat`,
         { message: inputMessage },
         {
           headers: {

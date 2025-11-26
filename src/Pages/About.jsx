@@ -143,7 +143,7 @@ const About = () => {
               {/* Social Links */}
               <div className="flex items-center justify-center md:justify-start gap-4 pt-4">
                 <a
-                  href="https://www.linkedin.com/in/govinda-mahanti-314754251"
+                  href="https://github.com/govinda-mahanti"
                   className="w-12 h-12 bg-slate-700 hover:bg-purple-600 rounded-lg flex items-center justify-center transition-colors duration-300"
                 >
                   <svg
@@ -156,6 +156,7 @@ const About = () => {
                 </a>
                 <a
                   href="https://github.com/govinda-mahanti"
+                  href="https://www.linkedin.com/in/govinda-mahanti-314754251"
                   className="w-12 h-12 bg-slate-700 hover:bg-cyan-600 rounded-lg flex items-center justify-center transition-colors duration-300"
                 >
                   <svg

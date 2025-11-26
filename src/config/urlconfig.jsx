@@ -1,2 +1,2 @@
-export const BASE_URL = 'https://nidhibook-backend-1.onrender.com';
+export const BASE_URL = 'https://nidhi-book-backend.vercel.app';
 

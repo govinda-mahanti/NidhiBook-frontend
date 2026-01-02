@@ -1,7 +1,14 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
 const HeroSection = () => {
+  const navigate = useNavigate();
+  const handleGetStarted = () => {
+    navigate("/signup");
+  } ;
+  const handleContactUs = () => {
+    navigate("/contact");
+  }
   return (
     <>
       <section className="min-h-screen bg-black relative overflow-hidden">
@@ -25,7 +32,7 @@ const HeroSection = () => {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <button className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105">
+                <button onClick={handleGetStarted} className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105">
                   Get Started Free
                 </button>
               </div>
@@ -373,7 +380,7 @@ const HeroSection = () => {
               </div>
 
               <div className="pt-4">
-                <button className=" bg-gradient-to-r from-blue-400 to-cyan-400 px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105">
+                <button onClick={handleGetStarted} className=" bg-gradient-to-r from-blue-400 to-cyan-400 px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105">
                   Explore Dashboard
                 </button>
               </div>
@@ -688,7 +695,7 @@ const HeroSection = () => {
           {/* CTA */}
           <div className="mt-16 text-center">
             <p className="text-gray-400 mb-6">Still have questions?</p>
-            <button className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105">
+            <button onClick={handleContactUs} className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105">
               Contact Support
             </button>
           </div>

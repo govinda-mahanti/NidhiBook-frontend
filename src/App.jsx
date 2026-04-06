@@ -15,6 +15,10 @@ import Profile from "./Dashboard/Profile";
 import Income from "./Dashboard/Income";
 import Advisor from "./Dashboard/Advisor";
 
+
+import AdminDashLayout from "./AdminDashboard/AdminDashLayout";
+import AdminDashboard from "./AdminDashboard/AdminDashboard";
+
 import ProtectedRoute from "./redux/ProtectedRoute";
 
 function App() {
@@ -29,13 +33,19 @@ function App() {
           <Route path="signup" element={<Signup />} />
         </Route>
 
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute role="user" />}>
           <Route path="/dashboard" element={<DashLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="expense" element={<Expense />} />
             <Route path="profile" element={<Profile />} />
             <Route path="income" element={<Income />} />
             <Route path="advisor" element={<Advisor />} />
+          </Route>
+        </Route>
+
+        <Route element={<ProtectedRoute role="admin" />}>
+          <Route path="/admin-dashboard" element={<AdminDashLayout />}>
+            <Route index element={<AdminDashboard />} />
           </Route>
         </Route>
       </Routes>

@@ -20,8 +20,17 @@ const Login = () => {
       const res = await axios.post(`${BASE_URL}/auth/login`, formData);
 
       const { token, ...user } = res.data;
+
       dispatch(setCredentials({ user, token }));
-      navigate("/dashboard");
+
+      console.log("Login successful:", res.data);
+
+      if (user.role === "admin") {
+        navigate("/admin-dashboard");
+      } else {
+        navigate("/dashboard");
+      }
+
     } catch (err) {
       console.error("Login error:", err);
       alert("Login failed. Please check your credentials.");
